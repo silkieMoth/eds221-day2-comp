@@ -54,3 +54,38 @@ df
 # changes all values of a less than 5 to 0
 df$a[df$a < 5] <- 0
 df
+
+# fetches all cars with gear 5
+mtcars[mtcars$gear == 5, ]
+
+#fetches all cars with gear 5 and cyl 4
+mtcars[mtcars$gear == 5 & mtcars$cyl == 4, ]
+
+# can use subset() to do the same thing
+subset(mtcars, gear == 5)
+subset(mtcars, gear == 5 & cyl == 4)
+
+#lets make a plot with the cars using subset()
+library(tidyverse)
+ggplot(subset(mtcars, gear == 5 & cyl == 4), aes(x = mpg, y = disp)) + geom_point()
+
+#declares data frame
+df <- data.frame(x = 1:3, y = 3:1, z = letters[1:3])
+df
+# makes all values in parameter z null, effectively deleting them
+df$z <- NULL
+df
+
+#resetting the dataframe
+df <- data.frame(x = 1:3, y = 3:1, z = letters[1:3])
+#returns just parameters x and y
+df[c("x", "y")]
+
+#resetting the dataframe
+df <- data.frame(x = 1:3, y = 3:1, z = letters[1:3])
+df
+# just removes column z
+# names() in this case fetches name of all columns
+# setdiff() compares first and second params and removes second that is the same as the first from the data frame
+df <- df[setdiff(names(df), "z")]
+df
